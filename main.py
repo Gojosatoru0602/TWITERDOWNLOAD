@@ -27,14 +27,14 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @check_subscription
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle the /help command"""
-    await update.message.reply_text(HELP_MESSAGE, parse_mode='Markdown')
+    await update.message.reply_text(HELP_MESSAGE)
 
 @check_subscription
 async def quality_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current quality setting"""
     quality = context.user_data.get('quality', DEFAULT_QUALITY)
     message = f"Current video quality: *{quality}* ({VIDEO_QUALITIES[quality]})"
-    await update.message.reply_text(message, parse_mode='Markdown')
+    await update.message.reply_text(message)
 
 @check_subscription
 async def set_quality(update: Update, context: ContextTypes.DEFAULT_TYPE, quality: str):
@@ -45,7 +45,7 @@ async def set_quality(update: Update, context: ContextTypes.DEFAULT_TYPE, qualit
     
     context.user_data['quality'] = quality
     message = f"✅ Video quality set to: *{quality}* ({VIDEO_QUALITIES[quality]})"
-    await update.message.reply_text(message, parse_mode='Markdown')
+    await update.message.reply_text(message)
 
 async def quality_best_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await set_quality(update, context, 'best')
